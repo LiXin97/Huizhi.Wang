@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huizhi Wang - Academic Homepage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #555;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2e86de;
+        }
+
+        .theme-toggle {
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #555;
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            padding: 40px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .profile-card {
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4em;
+            font-weight: bold;
+        }
+
+        .profile-name {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .profile-title {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .profile-info {
+            text-align: left;
+            margin-top: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .info-item svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .social-links {
+            margin-top: 25px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95em;
+        }
+
+        .social-item:hover {
+            color: #2e86de;
+        }
+
+        .social-item svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Main Content */
+        .content {
+            max-width: 900px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .biography {
+            line-height: 1.8;
+            color: #444;
+            font-size: 1.05em;
+            text-align: justify;
+        }
+
+        .biography p {
+            margin-bottom: 15px;
+        }
+
+        .biography a {
+            color: #2e86de;
+            text-decoration: none;
+        }
+
+        .biography a:hover {
+            text-decoration: underline;
+        }
+
+        /* Education & Experience */
+        .timeline-item {
+            margin-bottom: 25px;
+        }
+
+        .timeline-item ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .timeline-item li {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 5px;
+        }
+
+        .timeline-period {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            color: #555;
+            margin-left: 20px;
+        }
+
+        /* Research Interests */
+        .interests-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .interest-tag {
+            background-color: #f0f0f0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #555;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+
+        .interest-tag:hover {
+            background-color: #2e86de;
+            color: white;
+        }
+
+        /* Publications */
+        .publication-item {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 0.98em;
+            color: #444;
+        }
+
+        .publication-item strong {
+            color: #333;
+        }
+
+        /* Awards */
+        .award-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .award-item:last-child {
+            border-bottom: none;
+        }
+
+        .award-year {
+            font-weight: 600;
+            color: #2e86de;
+            min-width: 100px;
+            flex-shrink: 0;
+        }
+
+        .award-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9em;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-name {
+                font-size: 1.2em;
+            }
+
+            .nav-links a {
+                font-size: 0.85em;
+            }
+
+            .main-container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-name">Huizhi Wang</a>
+            <div class="nav-links">
+                <a href="#biography">Biography</a>
+                <a href="#publications">Publications</a>
+                <a href="#awards">Awards</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <span class="theme-toggle">⚙️</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="profile-photo"><img src="huizhi.png" alt="Huizhi Wang" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                <h1 class="profile-name">Huizhi Wang</h1>
+                <p class="profile-title">Ph.D. Student, Nanyang Technological University<br>School of Electrical and Electronic Engineering</p>
+                
+                <div class="profile-info">
+                    <div class="info-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                        <span>Singapore</span>
+                    </div>
+                    <div class="info-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                        <span>Nanyang Technological University</span>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="mailto:huizhi001@e.ntu.edu.sg" class="social-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                        <span>Email</span>
+                    </a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=SHTRXDMAAAAJ" target="_blank" class="social-item">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+                        <span>Google Scholar</span>
+                    </a>
+                    <!-- <a href="#" class="social-item">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="social-item">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="#" class="social-item">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2 0-.68.06-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08C6.03 6.34 7.57 5.06 9.4 4.44 8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56-1.83-.63-3.37-1.9-4.32-3.56M4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56M12 2C6.47 2 2 6.5 2 12s4.47 10 10 10 10-4.5 10-10S17.53 2 12 2z"/></svg>
+                        <span>ResearchGate</span>
+                    </a> -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <section id="biography">
+                <h2>Biography</h2>
+                <div class="biography">
+                    <p>Huizhi Wang received the B.Eng. degree in Telecommunication Engineering from <a href="#">Northwestern Polytechnical University (NWPU)</a>, Xi'an, China, in 2021, and the M.Eng. degree in Information and Communication Engineering from <a href="#">Southeast University (SEU)</a>, Nanjing, China, in 2024. During her master's studies, she was a Research Assistant at the Huawei-SEU Joint Laboratory, working on integrated sensing and communication systems for future 6G networks.</p>
+
+                    <p>She is currently pursuing her Ph.D. degree in the School of Electrical and Electronic Engineering at <a href="#">Nanyang Technological University (NTU)</a>, Singapore, under the supervision of <a href="https://blogs.ntu.edu.sg/chau-yuen/">Prof. Chau Yuen</a> and <a href="https://www.kth.se/profile/emilbjo">Prof. Emil Björnson</a> (KTH Royal Institute of Technology). Her research focuses on extremely large-scale MIMO systems, near-field communications, and integrated sensing and communication (ISAC) technologies. She has published several papers at top international conferences and journals, including IEEE ICC and IEEE Transactions on Signal Processing. She received multiple National Scholarships and was recognized as an Outstanding Graduate of Shaanxi Province.</p>
+                </div>
+            </section>
+
+            <section id="education">
+                <h2>Education</h2>
+                <div class="timeline-item">
+                    <div class="timeline-period">2025.01 - Present: Ph.D. (IGP-COLLAB. INITIATIVE)</div>
+                    <ul>
+                        <li>Nanyang Technological University (NTU), Singapore</li>
+                        <li>School of Electrical and Electronic Engineering (EEE)</li>
+                        <li>Supervisor: <a href="https://blogs.ntu.edu.sg/chau-yuen/">Prof. Chau Yuen</a></li>
+                        <li>Co-Supervisor: <a href="https://www.kth.se/profile/emilbjo">Prof. Emil Björnson</a> (KTH Royal Institute of Technology)</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-period">2021.09 - 2024.06: M.Eng.</div>
+                    <ul>
+                        <li>Southeast University (SEU), Nanjing, China</li>
+                        <li>Information and Communication Engineering</li>
+                        <li>GPA: 93.3/100 (Top 3%)</li>
+                        <li>Supervisor: <a href="https://sites.google.com/site/ze0003ng/">Prof. Yong Zeng</a></li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-period">2017.09 - 2021.06: B.Eng.</div>
+                    <ul>
+                        <li>Northwestern Polytechnical University (NWPU), Xi'an, China</li>
+                        <li>Telecommunication Engineering</li>
+                        <li>GPA: 93.18/100 (Top 3%)</li>
+                        <li>Supervisor: Prof. Laisen Nie</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>Experience</h2>
+                <div class="timeline-item">
+                    <div class="timeline-period">2023.04 - 2025.04: Research Assistant</div>
+                    <div class="timeline-title">Huawei - SEU Joint Laboratory</div>
+                    <ul>
+                        <li>Super-resolution Low Complexity Sensing for ISAC System</li>
+                        <li>Studied and compared the computational complexity of conventional super-resolution algorithms</li>
+                        <li>Researched state-of-art technologies to reduce computational complexity</li>
+                        <li>Supervisor: <a href="https://sites.google.com/site/ze0003ng/">Prof. Yong Zeng</a></li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-period">2021.10 - 2022.10: Research Assistant</div>
+                    <div class="timeline-title">Huawei - SEU Joint Laboratory</div>
+                    <ul>
+                        <li>Integrated Sensing and Communication System for Future 6G</li>
+                        <li>Compared the performance of different XL-sensing systems</li>
+                        <li>Studied antenna selection and sparse array for ISAC system</li>
+                        <li>Supervisor: <a href="https://sites.google.com/site/ze0003ng/">Prof. Yong Zeng</a></li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-period">2019.01 - 2023.12: Research Assistant</div>
+                    <div class="timeline-title">National Key R&D Program of China</div>
+                    <ul>
+                        <li>Theory and Analysis of Massive Symbiotic Wireless Communication</li>
+                        <li>Established near-field channel model for extremely large scale MIMO</li>
+                        <li>Studied and derived the performance bound for XL-sensing system</li>
+                        <li>Supervisor: <a href="https://sites.google.com/site/ze0003ng/">Prof. Yong Zeng</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="research-interests">
+                <h2>Research Interests</h2>
+                <div class="interests-list">
+                    <span class="interest-tag">Extremely Large-Scale MIMO</span>
+                    <span class="interest-tag">Near-Field Communications</span>
+                    <span class="interest-tag">Integrated Sensing and Communications (ISAC)</span>
+                    <span class="interest-tag">Sparse Arrays</span>
+                    <span class="interest-tag">Super-Resolution Sensing</span>
+                    <span class="interest-tag">6G Wireless Systems</span>
+                    <span class="interest-tag">Signal Processing</span>
+                    <span class="interest-tag">Channel Modeling</span>
+                </div>
+            </section>
+
+            <section id="publications">
+                <h2>Publications</h2>
+                <div class="publication-item">
+                    [1] <strong>H. Wang</strong> and Y. Zeng, "Can Sparse Arrays Outperform Collocated Arrays for Future Wireless Communications?" Submitted to IEEE Global Communications Conference Workshops, 2023.
+                </div>
+
+                <div class="publication-item">
+                    [2] <strong>H. Wang</strong>, Z. Xiao, Y. Zeng, "Cramer-Rao Bounds for Near-Field Sensing with Extremely Large-Scale MIMO." Submitted to IEEE Transactions on Signal Processing, 2023.
+                </div>
+
+                <div class="publication-item">
+                    [3] C. Zhang, Z. Zhou, <strong>H. Wang</strong>, et al. "Integrated Super-Resolution Sensing and Communication with 5G NR Waveform: Signal Processing with Uneven CPs and Experiments." WiOpt 2023 Workshop, accepted.
+                </div>
+
+                <div class="publication-item">
+                    [4] <strong>H. Wang</strong> and Y. Zeng, "SNR Scaling Laws for Radio Sensing with Extremely Large-Scale MIMO," 2022 IEEE International Conference on Communications Workshops (ICC Workshops), Seoul, Korea, Republic of, 2022.
+                </div>
+
+                <div class="publication-item">
+                    [5] <strong>H. Wang</strong>, L. Nie, Z. Ning, M. S. Obaidat and R. Shang, "Traffic Measurement Optimization Based on Reinforcement Learning in Large-Scale IP Backbone Networks," 2019 IEEE Global Communications Conference (GLOBECOM), Waikoloa, HI, USA, 2019.
+                </div>
+            </section>
+
+            <section id="awards">
+                <h2>Awards</h2>
+                <div class="award-item">
+                    <span class="award-year">2021-2022</span>
+                    <span class="award-description">National Scholarship for Graduate Students (￥20,000)</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">2021-2022</span>
+                    <span class="award-description">The Second Prize Scholarship of Southeast University (￥8,000)</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">Sep. 2022</span>
+                    <span class="award-description">Second Prize of National Graduate Electronic Design Competition (￥4,000)</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">2020-2021</span>
+                    <span class="award-description">The First Prize Scholarship of Southeast University (￥10,000)</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">Jun. 2021</span>
+                    <span class="award-description">Outstanding Graduate of Shaanxi Province</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">Nov. 2019</span>
+                    <span class="award-description">National Scholarship for Undergraduate Students (￥8,000)</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">Jun. 2019</span>
+                    <span class="award-description">Second Prize of National English Competition for College Students</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">Nov. 2018</span>
+                    <span class="award-description">National Scholarship for Undergraduate Students (￥8,000)</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">Oct. 2018</span>
+                    <span class="award-description">Scholarship in Honor of Chinese Scientists (￥20,000)</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">2018-2021</span>
+                    <span class="award-description">The First Prize Scholarship of NWPU (Three consecutive years)</span>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
